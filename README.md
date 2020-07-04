@@ -43,7 +43,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://hms-tcs.el.r.appspot.com)
 
-This project was done as a part of TCS Xplore Case Study, by a team of 5 soon-to-be TCSers. This application meets the end user specification but has it's features limited to the functional requirements mentioned in the SRS, due to a short time frame of 6 days. That being said, it's a possibility to add new features to this app over time. Fell free to create a PR and implement any features that you'd like to be a part of this application.
+This project was done as a part of TCS Xplore Case Study, by a team of 4 soon-to-be TCSers, with a sprint goal set to deliver a MVP of HMS. This application meets the end user specification but has it's features limited to the functional requirements mentioned in the SRS, due to a short time frame of 6 days. That being said, it's a possibility to add new features to this app over time. Fell free to create a PR and implement any features that you'd like to be a part of this application.
 
 ### Built With
 
