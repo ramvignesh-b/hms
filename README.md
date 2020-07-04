@@ -112,6 +112,12 @@ Username: 12345678@D
 Password: 12345678@D
 ```
 
+*Note While creating new login credentials please set the ending character with accordance to the role of the stakeholder.*
+
+    * Admission Desk Executive/Registration Desk executive: A
+    * Pharmacist: P
+    * Diagnostic Executive: D
+
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -136,10 +142,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 * RamVignesh B. - [![linkedin-shield]](https://linkedin.com/in/ramvigneshb) - ramvignesh.codes@gmail.com
-* Ayush Saini - [![linkedin-shield]](https://linkedin.com/in/) - @gmail.com
-* Vibhor - [![linkedin-shield]](https://linkedin.com/in/) - @gmail.com
-* Chittaranjan. - [![linkedin-shield]](https://linkedin.com/in/) - @gmail.com
-* Alex - [![linkedin-shield]](https://linkedin.com/in/) - @gmail.com
+* Ayush Saini - [![linkedin-shield]](https://www.linkedin.com/in/ayush-saini-570345137/) - ayushgd@gmail.com
+* Vibhor Aggarwal - [![linkedin-shield]](https://www.linkedin.com/in/vibhor-aggarwal-6585a5185/) - vibhor.msn@gmail.com
+* Chittaranjan Sahu - [![linkedin-shield]](https://www.linkedin.com/in/chittaranjan-sahu-7a7289129/) - @gmail.com
 
 Project Link: [https://github.com/ayushgd/hms](https://github.com/ayushgd/repo_name)
 

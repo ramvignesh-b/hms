@@ -318,7 +318,7 @@ def view_patient():
 def get_patient():
 
     # Check that an authorised user only can access this functionality
-    if check_session() != 'registration_desk_executive' and check_session() != 'pharmacy_executive':
+    if check_session() != 'pharmacy_executive':
         flash('You are not authorised to access that! Please login with proper credentials.', 'danger')
         return redirect(url_for('main'))
 
@@ -347,7 +347,7 @@ def get_patient():
 @app.route("/IssueMedicine", methods=["GET", "POST"])
 def issue_medicine():
     # Check that an authorised user only can access this functionality
-    if check_session() != 'registration_desk_executive' and check_session() != 'pharmacy_executive':
+    if check_session() != 'pharmacy_executive':
         flash('You are not authorised to access that! Please login with proper credentials.', 'danger')
         return redirect(url_for('main'))
     global issue_med
@@ -357,8 +357,7 @@ def issue_medicine():
     medicine = Medicine.query.all()
     for med in medicine:
         # Populate the medicine select form
-        form.medicine_name.choices += [(med.medicine_name, '   ' +
-                                        med.medicine_name + ' || Qty: ' + str(med.medicine_quantity))]
+        form.medicine_name.choices += [(med.medicine_name, med.medicine_name + ' || Qty: ' + str(med.medicine_quantity))]
     if form.validate_on_submit():
         name = form.medicine_name.data
         quantity = form.quantity.data
@@ -383,7 +382,7 @@ def issue_medicine():
 @app.route("/medicine_update", methods=["GET", "POST"])
 def update():
     # Check that an authorised user only can access this functionality
-    if check_session() != 'registration_desk_executive' and check_session() != 'pharmacy_executive':
+    if check_session() != 'pharmacy_executive':
         flash('You are not authorised to access that! Please login with proper credentials.', 'danger')
         return redirect(url_for('main'))
     global issue_med
@@ -404,7 +403,7 @@ def update():
             # Query for Patient_Medicine 
             db.session.add(Patient_Medicine(
                 patient_id=pid, medicine_quantity=med_quant, medicine_id=med_id))
-            medicine.medicine_quantiy = new_quant
+            medicine.medicine_quantity = new_quant
             db.session.commit()
         else:
             # Update Medicine Quantity
@@ -436,7 +435,7 @@ def med_patient(patient):
 def patient_diagnosis():
 
     # Check that an authorised user only can access this functionality
-    if check_session() != 'registration_desk_executive' and check_session() != 'diagnostic_executive':
+    if check_session() != 'diagnostic_executive':
         flash('You are not authorised to access that! Please login with proper credentials.', 'danger')
         return redirect(url_for('main'))
 
@@ -467,7 +466,7 @@ def patient_diagnosis():
 def diagnostics():
 
     # Check that an authorised user only can access this functionality
-    if check_session() != 'registration_desk_executive' and check_session() != 'diagnostic_executive':
+    if check_session() != 'diagnostic_executive':
         flash('You are not authorised to access that! Please login with proper credentials.', 'danger')
         return redirect(url_for('main'))
     global pid
@@ -489,7 +488,7 @@ def diagnostics():
 
 @app.route('/updatetest', methods=['GET', 'POST'])
 def update_test():
-    if check_session() != 'registration_desk_executive' and check_session() != 'diagnostic_executive':
+    if check_session() != 'diagnostic_executive':
         flash('You are not authorised to access that! Please login with proper credentials.', 'danger')
         return redirect(url_for('main'))
     global pid
@@ -560,6 +559,9 @@ def billing():
 
 @app.route('/Discharge', methods=["POST"])
 def discharge():
+    if check_session() != 'registration_desk_executive':
+        flash('You are not authorised to access that! Please login with proper credentials.', 'danger')
+        return redirect(url_for('main'))
     patient = Patient_details.query.filter_by(
         id=request.form.get('pid')).first()
     if patient:

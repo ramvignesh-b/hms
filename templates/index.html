@@ -21,10 +21,10 @@
         {% if session['stakeholder'] == 'registration_desk_executive' %}
         <li>Creation, updation, deletion, viewing, searching and billing of patients</li>
         {% endif %}
-        {% if session['stakeholder'] == 'registration_desk_executive' or session['stakeholder'] == 'pharmacy_executive'%}
+        {% if session['stakeholder'] == 'pharmacy_executive'%}
         <li>Viewing history of medicines given to the patient and prescribing new medicines</li>
         {% endif %}
-        {% if session['stakeholder'] == 'registration_desk_executive' or session['stakeholder'] == 'diagnostic_executive'%}
+        {% if session['stakeholder'] == 'diagnostic_executive'%}
         <li>Viewing history of diagnostics conducted on the patients and adding new diagnostics</li>
         {% endif %}
     </ol>

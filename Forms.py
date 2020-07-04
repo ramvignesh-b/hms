@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email, Length, ValidationError
 import datetime
 from wtforms.fields.html5 import DateField, widgets
 from .Models import UserStore, Patient_test, Patient_Medicine, Patient_details, Diagnosis, Medicine
-
+import re
 
 class check_alpha(FlaskForm):
     def __init__(self, message):
@@ -102,7 +102,7 @@ class Patient_create(FlaskForm):
         'please enter SSN ID in integer format'), check_length(message="id must be 9 digits long", min=9, max=9)])
     patient_name = StringField('patient name', validators=[
                                DataRequired('please enter name')])
-    patient_age = IntegerField('patient age', validators=[DataRequired(
+    patient_age = IntegerField('patient age', widget=widgets.Input(input_type="number"), validators=[DataRequired(
         'please enter age'), check_length(min=1, max=3, message="age should be 1-3 digits long")])
     date = DateField('enter date', format="%Y-%m-%d", validators=[
                      DataRequired('please enter date')], default=datetime.date.today())
@@ -111,6 +111,18 @@ class Patient_create(FlaskForm):
     address = StringField('enter address', validators=[
                           DataRequired('enter the address')])
     submit = SubmitField('create')
+
+    def validate_date(form, date):
+        if date.data > datetime.date.today():
+            raise ValidationError("Date of Admission cannot exceed today's date!")
+    
+    def validate_patient_name(form,patient_name):
+        if not patient_name.data.isalpha():
+            raise ValidationError("Name cannot contain numbers/ symbols")
+
+    def validate_address(form,address):
+        if not re.match("^[a-zA-Z0-9,. ]*$", address.data):
+            raise ValidationError("Address can only contain alphabets, numbers, comma and periods!")
 
 
 # class for delete patient form
@@ -137,6 +149,18 @@ class Patient_update(FlaskForm):
     address = StringField('enter address', validators=[
                           DataRequired('enter the address')])
     submit = SubmitField('update')
+
+    def validate_date(form, date):
+        if date.data > datetime.date.today():
+            raise ValidationError("Date of Admission cannot exceed today's date!")
+    
+    def validate_patient_name(form,patient_name):
+        if not patient_name.data.isalpha():
+            raise ValidationError("Name cannot contain numbers/ symbols")
+
+    def validate_address(form,address):
+        if not re.match("^[a-zA-Z0-9,. ]*$", address.data):
+            raise ValidationError("Address can only contain alphabets, numbers, comma and periods!")
 
 
 # class for medicine issuing
